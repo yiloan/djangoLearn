@@ -10,3 +10,12 @@ class userinfo(models.Model):
     password = models.CharField(max_length=32)
     # 薪资
     salary = models.IntegerField()
+    # 年龄
+    age = models.IntegerField()
+
+
+class person(models.Model):
+    # 姓名
+    name = models.CharField(max_length=32)
+    # 年龄
+    age = models.IntegerField()

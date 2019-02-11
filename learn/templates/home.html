@@ -5,7 +5,31 @@
     <title>Django 2.0</title>
 </head>
 <body>
+<h2>首页</h2>
 {#<a href="/learn/add2/4/5/">计算 4+5</a>#}
 <a href="{% url 'add2' 4 5 %}">计算 4+5</a>
+<br>
+<br>
+<a href="/learn/string">标签显示</a>
+<br>
+<br>
+<a href="/learn/list">list显示</a>
+<br>
+<br>
+<a href="/learn/dict">dict字典显示</a>
+<br>
+<br>
+<a href="/learn/forif">for if联合使用</a>
+<br>
+<br>
+<a href="/learn/logical_operation/61/">逻辑运算(跳转之后,可以修改url中的"61"的值)</a>
+
+<br>
+<br>
+<p>获取当前用户:{{ request.user }}</p>
+<p>获取当前路径:{{ request.path }}</p>
+<p><a href="http://127.0.0.1:8000/learn/index?b=10&a=999">获取当前GET参数：{{request.GET.urlencode}}</a></p>
+
+
 </body>
 </html>

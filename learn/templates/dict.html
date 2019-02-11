@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dict demo</title>
+</head>
+<body>
+<h2> #取字典值</h2>
+{{ info_dict.one }}:{{ info_dict.two }}
+<br>
+<br/>
+<h2>#循环取键值对</h2>
+{% for key,value in info_dict.items %}
+{{ key }} - {{ value }} <br/>
+{% endfor %}
+
+
+</body>
+</html>

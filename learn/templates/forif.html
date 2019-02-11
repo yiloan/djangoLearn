@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>forif demo</title>
+</head>
+<body>
+<h2>循环可使用的函数</h2>
+<pre>
+在for循环中还有很多有用的东西，如下：
+
+forloop.counter　　　　索引从1开始算
+
+forloop.counter0　　　　索引从0开始算
+
+forloop.revcounter　　　　索引从最大长度到1
+
+forloop.revcounter0　　　　索引从最大长度到0
+
+forloop.first　　　　　　当遍历的元素为第一项时为真
+
+forloop.last　　　　　　当遍历的元素为最后一项时为真
+
+forloop.parentloop　　　　用来嵌套的for循环中，获取上一层for循环的forloop
+</pre>
+
+<br>
+
+<h2>for if 循环判断</h2>
+<pre>forloop.last判断是否为最后一个元素，不是加‘，’,是则不加</pre>
+{% for item in list %}
+    {{ item }}
+    {% if not forloop.last %},{% endif %}
+{% endfor %}
+
+<h2>当列表中可能为空值时用 for  empty</h2>
+<ul>
+    {% for athlete in athlete_list %}
+        <li>{{ athlete.name }}</li>
+        {% empty %} <li>抱歉，列表为空</li>
+    {% endfor %}
+</ul>
+
+{% for item in list %}
+    {{ forloop.counter }}
+{% endfor %}
+
+
+</body>
+</html>

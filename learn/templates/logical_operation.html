@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>logical operation demo</title>
+</head>
+<body>
+<h2>逻辑运算</h2>
+可以修改url中的"61"的值，显示不同的内容<br><br>
+
+{{ a }} <br>
+{% if a >= 90 %}
+    成绩优秀！
+    {% elif a >= 80 %}
+        成绩良好
+    {% elif a >= 70 %}
+        成绩一般
+    {% elif a >= 60 %}
+        需要努力
+    {% else %}
+        不及格，大哥，需要努力了
+{% endif %}
+
+</body>
+</html>
