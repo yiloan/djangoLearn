@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blog',        #数据库名
         'USER':'root',           #用户名
-        'PASSWORD':'mysql',     #密码
+        'PASSWORD':'xxx',     #密码
         'HOST':'127.0.0.1',      #本机地址
         'PORT':'3306',           #端口
 
