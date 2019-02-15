@@ -18,6 +18,7 @@ from django.urls import path
 
 import tools.views as tool_views
 import learn.views as learn_views
+import blog.views as blog_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -45,6 +46,9 @@ urlpatterns = [
     path("learn/forif", learn_views.forif),
     # logical_operation  访问 http://127.0.0.1:8000/learn/logical_operation/10/
     path("learn/logical_operation/<int:a>/",learn_views.logical_operation),
+    #blog
+    path('',blog_views.IndexView.as_view(),name='index'),
+
 
 
 

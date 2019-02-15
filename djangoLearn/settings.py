@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pure_pagination', # 分页插件
 
     'tools',
     'learn',
@@ -58,8 +59,7 @@ ROOT_URLCONF = 'djangoLearn.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,9 +85,9 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog',        #数据库名
+        'NAME': 'myblog',        #数据库名
         'USER':'root',           #用户名
-        'PASSWORD':'xxx',     #密码
+        'PASSWORD':'mysql',     #密码
         'HOST':'127.0.0.1',      #本机地址
         'PORT':'3306',           #端口
 
@@ -136,3 +136,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# 配置静态资源
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# 注册分页插件之后，设置分页信息
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 3,    #中间显示的个数
+    'MARGIN_PAGES_DISPLAYED': 2,  #两边显示的个数
+
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}

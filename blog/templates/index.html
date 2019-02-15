@@ -9,23 +9,23 @@
 {#博客正文部分#}
 {% block content %}
     <div class="content-wrap">
-                <div id="content" class="content">
+        <div id="content" class="content">
 
-                    <section id="posts" class="posts-expand">
+            <section id="posts" class="posts-expand">
 
-                        {% for blog in all_blog %}
+                {% for blog in all_blog.object_list %}
 
-                            <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article"
-                                     style="opacity: 1; display: block; transform: translateY(0px);">
+                    <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article"
+                             style="opacity: 1; display: block; transform: translateY(0px);">
 
-                                <header class="post-header">
-                                    <h1 class="post-title" itemprop="name headline">
-                                        <a class="post-title-link" href="http://www.geerniya.cn/blog/4/" itemprop="url">
-                                            {{ blog.title }}
-                                        </a>
-                                    </h1>
+                        <header class="post-header">
+                            <h1 class="post-title" itemprop="name headline">
+                                <a class="post-title-link" href="http://www.geerniya.cn/blog/4/" itemprop="url">
+                                    {{ blog.title }}
+                                </a>
+                            </h1>
 
-                                    <div class="post-meta">
+                            <div class="post-meta">
             <span class="post-time">
 
                 <span class="post-meta-item-icon">
@@ -40,7 +40,7 @@
 
             </span>
 
-                                        <span class="post-category">
+                                <span class="post-category">
                 <span class="post-meta-divider">|</span>
 
                 <span class="post-meta-item-icon">
@@ -57,60 +57,65 @@
 
             </span>
 
-                                    </div>
-                                </header>
+                            </div>
+                        </header>
 
-                                <div class="post-body" itemprop="articleBody">
+                        <div class="post-body" itemprop="articleBody">
 
-                                    <blockquote>
-                                        <p>{{ blog.title }}</p>
-                                    </blockquote>
-                                    <p>{{ blog.content }}</p>
-                                    <!--noindex-->
-                                    <div class="post-button text-center">
-                                        <a class="btn" href="http://www.geerniya.cn/blog/4/" rel="contents">
-                                            阅读全文 »
-                                        </a>
-                                    </div>
-                                    <!--/noindex-->
-
-
-                                </div>
-
-                                <footer class="post-footer">
-                                    <div class="post-eof"></div>
-                                </footer>
-
-                            </article>
-
-                        {% endfor %}
-
-                    </section>
-
-                    <!--分页展示-->
-                    <nav class="pagination">
-                        <div class="pageturn">
-                            <ul class="pagelist">
+                            <blockquote>
+                                <p>{{ blog.title }}</p>
+                            </blockquote>
+                            <p>{{ blog.content }}</p>
+                            <!--noindex-->
+                            <div class="post-button text-center">
+                                <a class="btn" href="http://www.geerniya.cn/blog/4/" rel="contents">
+                                    阅读全文 »
+                                </a>
+                            </div>
+                            <!--/noindex-->
 
 
-                                <li class="active"><a href="http://www.geerniya.cn/?page=1">1</a></li>
-
-
-                                <li class="none"><a href="http://www.geerniya.cn/">...</a></li>
-
-
-                                <li><a href="http://www.geerniya.cn/?page=3" class="page">3</a></li>
-
-
-                                <li class="long"><a href="http://www.geerniya.cn/?page=2">下一页</a></li>
-
-
-                            </ul>
                         </div>
-                    </nav>
 
+                        <footer class="post-footer">
+                            <div class="post-eof"></div>
+                        </footer>
 
+                    </article>
+
+                {% endfor %}
+
+            </section>
+
+            <!--分页展示-->
+            <nav class="pagination">
+                <div class="pageturn">
+                    <ul class="pagelist">
+                        {% if all_blog.has_previous %}
+                            <li class="long"><a href="?{{ all_blog.previous_page_number.querystring }}">上一页</a></li>
+                        {% endif %}
+
+                        {% for page in all_blog.pages %}
+                            {% if page %}
+                                {% ifequal page all_blog.number %}
+                                    <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                                {% else %}
+                                    <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                                {% endifequal %}
+                            {% else %}
+                                <li class="none"><a href="">...</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if all_blog.has_next %}
+                            <li class="long"><a href="?{{ all_blog.next_page_number.querystring }}">下一页</a></li>
+                        {% endif %}
+
+                    </ul>
                 </div>
+            </nav>
 
-            </div>
+
+        </div>
+
+    </div>
 {% endblock %}
