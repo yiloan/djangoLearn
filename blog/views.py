@@ -5,13 +5,9 @@ from pure_pagination import PageNotAnInteger, Paginator
 
 
 # Create your views here.
-pageSize = 5
 
 class IndexView(View):
-    """
-        首页
-    """
-
+    """首页"""
     def get(self, request):
         all_blog = Blog.objects.all().order_by('-id')
         # 分页
@@ -19,7 +15,7 @@ class IndexView(View):
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        p = Paginator(all_blog, pageSize, request=request)  # 5为每页展示的博客数目
+        p = Paginator(all_blog, 5, request=request)  # 5为每页展示的博客数目
         all_blog = p.page(page)
         return render(request, 'index.html', {'all_blog': all_blog,})
 
@@ -32,18 +28,18 @@ class ArchiveView(View):
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        p = Paginator(all_blog, pageSize, request=request)  # 5为每页展示的博客数目
+        p = Paginator(all_blog, 5, request=request)  # 5为每页展示的博客数目
         all_blog = p.page(page)
         return render(request, 'archive.html', {'all_blog': all_blog,})
 
 class TagView(View):
-    """归档"""
+    """便签"""
     def get(self, request):
         all_tag = Tag.objects.all()
         return render(request, 'tags.html', {'all_tag': all_tag,})
 
 class TagDetailView(View):
-    """归档"""
+    """标签详情页"""
     def get(self, request,tag_name):
         tag = Tag.objects.filter(name = tag_name).first()
         tag_blogs = tag.blog_set.all()
@@ -53,6 +49,6 @@ class TagDetailView(View):
         except PageNotAnInteger:
             page = 1
 
-        p = Paginator(tag_blogs, pageSize, request=request)  # 5为每页展示的博客数目
+        p = Paginator(tag_blogs, 5, request=request)  # 5为每页展示的博客数目
         tag_blogs = p.page(page)
         return render(request, 'tag-detail.html', {'tag_blogs': tag_blogs,'tag_name':tag_name})
