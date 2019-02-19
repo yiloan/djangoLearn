@@ -50,6 +50,8 @@ urlpatterns = [
     path('',blog_views.IndexView.as_view(),name='index'),
     #归档
     path('archive',blog_views.ArchiveView.as_view(),name='archive'),
+    #标签云
+    path('tags',blog_views.TagView.as_view(),name='tags'),
 
 
 

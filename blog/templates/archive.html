@@ -23,7 +23,8 @@
                     </div>
                     {% regroup year.list by create_time.month as dates_by_month %}
                     {% for month in dates_by_month %}
-                        {{ month.grouper }} 月 共计： {{ month.list | length }} 篇
+                        {{ month.grouper }} 月
+{#                        共计： {{ month.list | length }} 篇#}
                         {% for blog in month.list %}
                         <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article"
                                  style="opacity: 1; display: block; transform: translateY(0px);">
