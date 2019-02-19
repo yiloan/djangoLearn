@@ -48,7 +48,8 @@ urlpatterns = [
     path("learn/logical_operation/<int:a>/",learn_views.logical_operation),
     #blog
     path('',blog_views.IndexView.as_view(),name='index'),
-
+    #归档
+    path('archive',blog_views.ArchiveView.as_view(),name='archive'),
 
 
 
