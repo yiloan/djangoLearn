@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from blog.models import Blog, Category, Tag
 from pure_pagination import PageNotAnInteger, Paginator
+import markdown
 
 
 # Create your views here.
@@ -11,6 +12,9 @@ class IndexView(View):
 
     def get(self, request):
         all_blog = Blog.objects.all().order_by('-id')
+        # 正文使用 markdown插件进行处理
+        for blog in all_blog:
+            blog.content = markdown.markdown(blog.content)
         # 分页
         try:
             page = request.GET.get('page', 1)
@@ -65,7 +69,7 @@ class BlogDetailView(View):
     """标签详情页"""
     def get(self, request, blog_id):
         blog = Blog.objects.get(id=blog_id)
-
+        blog.content = markdown.markdown(blog.content)
         # 实现博客上一篇和下一篇
         has_prev = False
         has_next = False
