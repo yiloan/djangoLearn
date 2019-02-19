@@ -68,7 +68,7 @@
                             <p>{{ blog.content }}</p>
                             <!--noindex-->
                             <div class="post-button text-center">
-                                <a class="btn" href="http://www.geerniya.cn/blog/4/" rel="contents">
+                                <a class="btn" href="{% url 'blog_id' blog.id %}" rel="contents">
                                     阅读全文 »
                                 </a>
                             </div>
