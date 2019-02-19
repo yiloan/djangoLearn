@@ -52,6 +52,7 @@ urlpatterns = [
     path('archive',blog_views.ArchiveView.as_view(),name='archive'),
     #标签云
     path('tags',blog_views.TagView.as_view(),name='tags'),
+    path('tags/(?P<tag_name>\w+)',blog_views.TagDetailView.as_view(),name = 'tag_name'),
 
 
 

@@ -22,7 +22,7 @@
                     </div>
                     <div class="tag-cloud-tags">
                         {% for tag in all_tag %}
-                            <a href="http://www.geerniya.cn/tags/django/"
+                            <a href="{% url 'tag_name' tag.name %}"
                                     {% if tag.number <= 2 %}
                                style="font-size: 12.5px; color: #999"
                                     {% elif tag.number <= 5 %}

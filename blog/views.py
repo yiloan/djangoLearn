@@ -41,3 +41,18 @@ class TagView(View):
     def get(self, request):
         all_tag = Tag.objects.all()
         return render(request, 'tags.html', {'all_tag': all_tag,})
+
+class TagDetailView(View):
+    """归档"""
+    def get(self, request,tag_name):
+        tag = Tag.objects.filter(name = tag_name).first()
+        tag_blogs = tag.blog_set.all()
+        # 分页
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+
+        p = Paginator(tag_blogs, pageSize, request=request)  # 5为每页展示的博客数目
+        tag_blogs = p.page(page)
+        return render(request, 'tag-detail.html', {'tag_blogs': tag_blogs,'tag_name':tag_name})
