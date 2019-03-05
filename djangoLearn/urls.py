@@ -56,7 +56,8 @@ urlpatterns = [
     path('tags/(?P<tag_name>\w+)',blog_views.TagDetailView.as_view(),name = 'tag_name'),
     # 博客详情页
     path('blog/(?P<blog_id>\d+)',blog_views.BlogDetailView.as_view(),name = 'blog_id'),
-
+    # 博客 评论
+    path('blog/add_comment',blog_views.AddCommentView.as_view(),name = 'add_comment'),
 
 
 
