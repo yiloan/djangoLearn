@@ -1,8 +1,12 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
-from blog.models import Blog, Category, Tag
+
+from blog.forms import CommentForm
+from blog.models import Blog, Category, Tag, Comment
 from pure_pagination import PageNotAnInteger, Paginator
 import markdown
+
 
 
 # Create your views here.
@@ -67,6 +71,7 @@ class TagDetailView(View):
 
 class BlogDetailView(View):
     """标签详情页"""
+
     def get(self, request, blog_id):
         blog = Blog.objects.get(id=blog_id)
         blog.content = markdown.markdown(blog.content)
@@ -89,13 +94,28 @@ class BlogDetailView(View):
                 id_next += 1
             else:
                 has_next = True
-
+        #博客评论
+        all_comment = Comment.objects.filter(blog_id = blog_id)
+        comment_count = all_comment.count()
         return render(request, 'blog-detail.html',
                       {
                           'blog': blog,
                           'blog_prev': blog_prev,
                           'blog_next': blog_next,
                           'has_prev': has_prev,
-                          'has_next': has_next
+                          'has_next': has_next,
+                          'all_comment': all_comment,
+                          'comment_count':comment_count
                       }
                       )
+
+
+"""新增评论"""
+class AddCommentView(View):
+    def post(self, request):
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment_form.save()
+            return HttpResponse('{"status":"success"}', content_type='application/json')
+        else:
+            return HttpResponse('{"status":"fail"}', content_type='application/json')

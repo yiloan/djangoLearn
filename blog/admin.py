@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from blog.models import Blog, Category, Tag
+from blog.models import Blog, Category, Tag, Comment
 
 # 后台管理 显示列的设置
 class BlogAdmin(admin.ModelAdmin):
@@ -40,3 +40,4 @@ class BlogAdmin(admin.ModelAdmin):
 admin.site.register(Blog, BlogAdmin)
 admin.site.register(Category)
 admin.site.register(Tag)
+admin.site.register(Comment)
